@@ -54,6 +54,8 @@ export class TransacaoRepository {
             console.log(`Menor valor transicionado: ${Math.min(...valores).toFixed(2)}`);
             console.log(`Maior valor transicionado: ${Math.max(...valores).toFixed(2)}`);
             console.log("**********************************************************************************************");
-        } catch (error) { }
+        } catch (error) { 
+            console.log(error);
+        }
     }
 }
