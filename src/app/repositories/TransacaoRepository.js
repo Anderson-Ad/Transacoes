@@ -51,8 +51,8 @@ export class TransacaoRepository {
             console.log(`Quantidade de transações: ${quantidadeDeTransacoes}`);
             console.log(`Soma total das transações: ${totalValores.toFixed(2)}`);
             console.log(`Média dos valores: ${mediaValores.toFixed(2)}`);
-            console.log(`Menor valor transicionado: ${Math.min(...valores).toFixed(2)}`);
-            console.log(`Maior valor transicionado: ${Math.max(...valores).toFixed(2)}`);
+            console.log(`Menor valor transacionado: ${Math.min(...valores).toFixed(2)}`);
+            console.log(`Maior valor transacionado: ${Math.max(...valores).toFixed(2)}`);
             console.log("**********************************************************************************************");
         } catch (error) { 
             console.log(error);
