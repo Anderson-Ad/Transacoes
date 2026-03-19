@@ -34,6 +34,12 @@ export class TransacaoController {
         }
     }
     estatisticasTransacoes = async (req, res) => {
-        
+        try {
+            const result = await this.transacaoRepository.getTransacoes();
+
+            return res.status(200).json(result);
+        } catch (error) {
+
+        }
     }
 }

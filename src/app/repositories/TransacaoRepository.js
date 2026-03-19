@@ -7,14 +7,14 @@ export class TransacaoRepository {
         if (valor < 0) return
 
         try {
-            this.valor += valor;
             this.registrosDeTransacoes.push({
                 valor: `${valor.toFixed(2)}`,
                 dataHora: `${date}`
             })
 
             return {
-                msg: 'success'
+                valor: valor.toFixed(2),
+                dataHora: date,
             }
         } catch (error) {
             console.log(error);
@@ -32,6 +32,28 @@ export class TransacaoRepository {
         }
     }
     async getTransacoes() {
-
+        try {
+            const agora = new Date();
+            const sessentaSegundos = agora - (60 * 1000);
+            const ultimasTransacoes = this.registrosDeTransacoes.filter(transacao => {
+                const dataTransacao = new Date(transacao.dataHora).getTime();
+                return dataTransacao >= sessentaSegundos;
+            });
+            if (ultimasTransacoes.length === 0) {
+                console.log('Nenhuma transação nos últimos 60 segundos.');
+                return;
+            }
+            const valores = ultimasTransacoes.map(valores => Number(valores.valor));
+            const quantidadeDeTransacoes = ultimasTransacoes.length;
+            const totalValores = valores.reduce((total, valor) => total + valor, 0);
+            const mediaValores = totalValores / quantidadeDeTransacoes
+            console.log("************************* ÚLTIMAS TRANSAÇÕES NOS ÚLTIMOS 60 SEGUNDOS *************************");
+            console.log(`Quantidade de transações: ${quantidadeDeTransacoes}`);
+            console.log(`Soma total das transações: ${totalValores.toFixed(2)}`);
+            console.log(`Média dos valores: ${mediaValores.toFixed(2)}`);
+            console.log(`Menor valor transicionado: ${Math.min(...valores).toFixed(2)}`);
+            console.log(`Maior valor transicionado: ${Math.max(...valores).toFixed(2)}`);
+            console.log("**********************************************************************************************");
+        } catch (error) { }
     }
 }
