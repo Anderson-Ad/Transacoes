@@ -39,7 +39,7 @@ export class TransacaoController {
 
             return res.status(200).json(result);
         } catch (error) {
-
+            console.log('Houve um erro inesperado');
         }
     }
 }
